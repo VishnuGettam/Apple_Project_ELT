@@ -1,8 +1,9 @@
 use role sysadmin;
 
 use database customers_db;
-use schema customers_schema_raw;
+ 
 
-
-select *
-from tblappleproducts_raw limit 10;
+select 
+* 
+from tblappleproducts_stg
+order by engagement_score desc;
