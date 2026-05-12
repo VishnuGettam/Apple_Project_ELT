@@ -1,0 +1,11 @@
+version: 2
+
+
+sources:
+    - name: customers_stg_source
+      database: customers_db
+      schema: customers_schema_raw
+      config:
+        enabled: true
+      tables:
+        - name: tblcustomers_raw
