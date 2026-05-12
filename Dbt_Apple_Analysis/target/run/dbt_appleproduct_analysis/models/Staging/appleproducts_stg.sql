@@ -1,7 +1,15 @@
 
+  
+    
+
+create or replace transient table customers_db.customers_schema_raw.tblappleproducts_stg
+    
+    
+    
+    as (
 
 
-with customers_cte as
+with appleproducts_cte as
 (
 select 
 PRODUCT_NAME,
@@ -26,7 +34,12 @@ select
 
     trim(split_part(substr(product_name,position('(',product_name) +1, length(product_name)+1 ),',',0)) as color,
 
-    trim(split_part(substr(product_name,position('(',product_name)+1, length(product_name)-4 - position('(',product_name) ),',',2)) as storage_gb,
+    
+case when try_to_number(trim(split_part(substr(product_name,position('(',product_name)+1, length(product_name)-4 - position('(',product_name) ),',',2)))
+is null then  
+try_to_number(split_part(trim(split_part(substr(product_name,position('(',product_name)+1, length(product_name)-4 - position('(',product_name) ),',',2)),' ',0))
+else  try_to_number(trim(split_part(substr(product_name,position('(',product_name)+1, length(product_name)-4 - position('(',product_name) ),',',2)))
+end as storage_gb,
 
     trim(replace(RAM,'GB','')) as ram_gb,
 
@@ -39,4 +52,9 @@ end  ) as price_per_gb,
 mrp - SALE_PRICE as discount_amount,
 star_rating + number_of_reviews as engagement_score 
 from 
-customers_cte
+appleproducts_cte
+    )
+;
+
+
+  

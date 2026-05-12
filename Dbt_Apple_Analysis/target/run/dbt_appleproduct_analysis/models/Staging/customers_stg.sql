@@ -1,4 +1,12 @@
 
+  
+    
+
+create or replace transient table customers_db.customers_schema_raw.tblcustomers_stg
+    
+    
+    
+    as (
 
 
 with customers_cte as
@@ -40,3 +48,8 @@ mrp - SALE_PRICE as discount_amount,
 star_rating + number_of_reviews as engagement_score 
 from 
 customers_cte
+    )
+;
+
+
+  

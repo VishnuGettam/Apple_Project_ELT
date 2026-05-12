@@ -8,4 +8,4 @@ sources:
       config:
         enabled: true
       tables:
-        - name: tblcustomers_raw
+        - name: tblappleproducts_raw

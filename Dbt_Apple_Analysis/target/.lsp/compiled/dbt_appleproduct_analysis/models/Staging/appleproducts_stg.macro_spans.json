@@ -30,24 +30,24 @@
       "start": {
         "line": 25,
         "col": 7,
-        "index": 319
+        "index": 323
       },
       "stop": {
         "line": 25,
         "col": 67,
-        "index": 379
+        "index": 383
       }
     },
     "expanded_span": {
       "start": {
         "line": 18,
         "col": 7,
-        "index": 191
+        "index": 195
       },
       "stop": {
         "line": 18,
         "col": 61,
-        "index": 245
+        "index": 249
       }
     }
   }
