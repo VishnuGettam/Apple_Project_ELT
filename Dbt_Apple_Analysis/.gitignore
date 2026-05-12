@@ -1,0 +1,61 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# dbt dependencies (installed via dbt deps)
+dbt_packages/
+
+# environment variable files
+.env
+.env.*
+
+# dbt logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables / secrets
+.env
+.env.*
+*.env
+
+# Profiles (contains credentials)
+profiles.yml
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE / Editor configs
+.vscode/
+.idea/
+
+# Mac/Linux temp files
+*.swp
+*~
+
+# Node (if using dbt docs or tools)
+node_modules/
+
+# Coverage / test artifacts
+.coverage
+htmlcov/
+
+# Airflow (if dbt is orchestrated via Airflow)
+airflow.db
+airflow-webserver.pid
+
+# Terraform (if infra is part of repo)
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Misc
+*.tmp
+*.bak
+dbt_internal_packages/
