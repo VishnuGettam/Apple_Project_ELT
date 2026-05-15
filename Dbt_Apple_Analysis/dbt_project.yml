@@ -34,12 +34,13 @@ models:
     # Config indicated by + and applies to all files under models/example/   
     Staging:
       +materialized: incremental
+      +tags: ['staging','hourly']
     Intermediate:
       +materialized: table
     Marts:
       +materialized: incremental
 
-
+# Configuring tests with audit schema and severity level
 tests:
   +store_failures: true
   +severity: error

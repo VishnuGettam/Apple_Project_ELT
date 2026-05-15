@@ -2,7 +2,11 @@
     config(
         alias = 'tblappleproducts_stg',
         materialized = 'incremental',
-        transient = true
+        transient = true,
+        unique_key = 'UPC',
+        incremental_strategy = 'merge',
+        on_schema_change = 'append_new_columns'
+
     )
 
 }}
@@ -25,6 +29,7 @@ RAM
 from  {{ source('customers_stg_source', 'tblappleproducts_raw') }}  
 )
 select 
+    upper(trim(UPC)) as UPC,
     trim(PRODUCT_NAME) as PRODUCT_NAME,
     trim(PRODUCT_URL) as PRODUCT_URL,
     initcap(trim(BRAND)) as BRAND,
@@ -32,10 +37,14 @@ select
     try_to_number(trim(MRP),10,2) as MRP_INR,
     try_to_number(trim(DISCOUNT_PERCENTAGE),5,2) as DISCOUNT_PERCENTAGE,
     try_to_number(trim(NUMBER_OF_RATINGS)) as NUMBER_OF_RATINGS,
-    try_to_number(trim(NUMBER_OF_REVIEWS)) as NUMBER_OF_REVIEWS,
-    upper(trim(UPC)) as UPC,
+    try_to_number(trim(NUMBER_OF_REVIEWS)) as NUMBER_OF_REVIEWS,    
     try_cast(trim(STAR_RATING) as number(2,1)) as STAR_RATING,
     trim(RAM) as RAM_raw, 
     current_timestamp()::timestamp_ltz as _loaded_at
-from 
-appleproducts_cte
+from  appleproducts_cte
+
+{% if is_incremental() %}
+
+where _loaded_at > (select max(_loaded_at) from {{ this }})
+
+{% endif %}
