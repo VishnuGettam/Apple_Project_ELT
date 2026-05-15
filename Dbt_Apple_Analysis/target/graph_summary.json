@@ -1,1 +1,0 @@
-{"_invocation_id": "70ce6534-2f31-4ce4-b234-80e916077957", "linked": {"0": {"name": "source.dbt_appleproduct_analysis.customers_stg_source.tblappleproducts_raw", "type": "source", "succ": [1]}, "1": {"name": "model.dbt_appleproduct_analysis.appleproducts_stg", "type": "model"}}}

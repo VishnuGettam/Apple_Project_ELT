@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_apple_products
+    description: "Standardized stage model for apple products data"
+    columns:     
+      - name: upc
+        description: "Universal Product Code for the apple product"
+        data_tests:
+         - not_null:
+              config:
+               severity: error
+         - unique
+      - name: sale_price_inr
+        description: "Sale price of the apple product in Indian Rupees"
+        data_tests:
+          - not_null:
+              config:
+               severity: error
+      - name: brand
+        description: "Brand of the apple product"
+        data_tests:
+          - accepted_values:
+              values: ['Apple']
+              config:
+               severity: error

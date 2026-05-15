@@ -33,8 +33,13 @@ models:
   dbt_appleproduct_analysis:
     # Config indicated by + and applies to all files under models/example/   
     Staging:
-      +materialized: table
+      +materialized: incremental
     Intermediate:
       +materialized: table
     Marts:
       +materialized: incremental
+
+
+tests:
+  +store_failures: true
+  +severity: error

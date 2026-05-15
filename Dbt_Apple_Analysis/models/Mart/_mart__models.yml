@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: appleproducts
+    description: 'final version of apple products data'
+    columns:
+      - name: model_name 
+        description: "Unique identifier for a apple product"
+        data_tests:
+          - not_null:
+              config:
+               severity: error
+          - unique
+
+      - name: ram_gb
+        description: "size of the ram"
+        data_tests:
+         - validate_ram:
+              config:
+                severity: error
+         - not_null_validation
