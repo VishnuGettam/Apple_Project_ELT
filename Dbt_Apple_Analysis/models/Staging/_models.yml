@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_apple_products
+  - name: stg_apple_products_merge
     description: "Standardized stage model for apple products data"
     columns:     
       - name: upc
@@ -24,3 +24,19 @@ models:
               values: ['Apple']
               config:
                severity: error
+      - name: stg_apple_products_append
+        description: "Staging model for apple products data with incremental loading"
+        columns:     
+          - name: stg_row_key
+            description: "Surrogate key for the staging table"          
+            data_tests:
+            - not_null:
+                  config:
+                  severity: error
+            - unique
+          - name: loaded_at
+            description: "Timestamp when the record was loaded into the staging table"
+            data_tests:
+              - not_null:
+                  config:
+                  severity: error

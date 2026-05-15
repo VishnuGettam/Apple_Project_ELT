@@ -11,7 +11,7 @@
 
 with apple_products_cte as 
 (
-    select * from {{  ref('stg_apple_products') }}
+    select * from {{  ref('stg_apple_products_merge') }}
 )
 select *
  from apple_products_cte

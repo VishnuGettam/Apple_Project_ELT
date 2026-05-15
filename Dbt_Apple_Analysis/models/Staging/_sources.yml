@@ -4,8 +4,26 @@ version: 2
 sources:
     - name: customers_stg_source
       database: customers_db
-      schema: customers_schema_raw
+      schema: customers_raw
       config:
         enabled: true
       tables:
         - name: tblappleproducts_raw
+          tests:  
+            - dbt_expectations.expect_table_columns_to_match_set:
+                column_list:
+                  - PRODUCT_NAME
+                  - PRODUCT_URL
+                  - BRAND
+                  - SALE_PRICE
+                  - MRP 
+                  - DISCOUNT_PERCENTAGE
+                  - NUMBER_OF_RATINGS
+                  - NUMBER_OF_REVIEWS                  
+                  - UPC
+                  - STAR_RATING
+                  - RAM
+                  - MRP
+                  - _FILE_NAME
+                  - _FILE_ROW_NUMBER
+                  - _LOADED_AT

@@ -4,6 +4,7 @@
 # name or the intended use of these models
 name: 'dbt_appleproduct_analysis'
 version: '1.0.0'
+require-dbt-version: ">=1.0.0"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'dbt_appleproduct_analysis'
@@ -22,6 +23,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+vars:
+  'dbt_date:timezone': 'Asia/Kolkata'
+
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -32,12 +36,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_appleproduct_analysis:
     # Config indicated by + and applies to all files under models/example/   
-    Staging:
+    staging:
       +materialized: incremental
       +tags: ['staging','hourly']
-    Intermediate:
+    intermediate:
       +materialized: table
-    Marts:
+    marts:
       +materialized: incremental
 
 # Configuring tests with audit schema and severity level
